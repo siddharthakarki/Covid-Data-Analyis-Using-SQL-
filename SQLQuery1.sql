@@ -29,7 +29,7 @@ order by 1,2
 
 
 
---Total population vs Total cases in germany
+--Total population vs Total cases 
 select location, population,  MAX(total_cases),    MAX((total_cases/population)*100 )as Infectedpercentagepopulation
 from Portfolio_Project..coviddeaths
 Group by location, population
@@ -57,7 +57,7 @@ where continent is not null
 Group By date
 order by 1,2
 
---New Vaccination over world
+-- Vaccination over world
 select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
 SUM(cast(vac.new_vaccinations as int)) OVER (Partition by dea.location Order by dea.location, dea.date) as rollingpeoplevaccinated
 --,(rollingpeoplevaccination/population)*100
